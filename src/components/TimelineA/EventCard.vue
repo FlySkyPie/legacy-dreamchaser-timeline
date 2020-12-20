@@ -77,5 +77,9 @@ export default {
     margin-bottom: 0;
     border: none;
   }
+
+  h3{
+    margin-bottom: 16px;
+  }
 }
 </style>

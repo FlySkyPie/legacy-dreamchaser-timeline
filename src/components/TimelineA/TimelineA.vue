@@ -53,32 +53,28 @@ export default {
 @font-title: "Saira", sans-serif;
 @font-text: "Chivo", sans-serif;
 
-/* Base */
-
-body {
+#timeline-content {
   background: @background;
   font-size: 16px;
-}
+  padding-top: 32px;
+  display: inline-block;;
 
-p {
-  font-weight: 300;
-}
-
-strong {
-  font-weight: 600;
-}
-
-h1 {
-  font-family: @font-title;
-  letter-spacing: 1.5px;
-  color: @color-light;
-  font-weight: 400;
-  font-size: 2.4em;
-}
-
-#timeline-content {
-  margin-top: @spacing;
   text-align: center;
+  p {
+    font-weight: 300;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  h1 {
+    font-family: @font-title;
+    letter-spacing: 1.5px;
+    color: @color-light;
+    font-weight: 400;
+    font-size: 2.4em;
+  }
 }
 
 /* Timeline */
@@ -99,7 +95,7 @@ h1 {
   list-style: none;
   text-align: left;
   font-weight: 100;
-  max-width: 30%;
+  max-width: 40%;
 
   h1 {
     font-family: @font-title;
