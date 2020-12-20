@@ -1,3 +1,5 @@
 node_modules
 
-public/app.js
+public/bundle.js
+public/fonts
+public/bundle.js.LICENSE.txt
