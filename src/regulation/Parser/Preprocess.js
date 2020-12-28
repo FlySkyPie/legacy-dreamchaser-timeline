@@ -9,7 +9,7 @@ const normalizeLevel1Heading = string => {
  * @param {string} string 
  */
 const normalizeIndent = string => {
-    return string.replace(/^ {4}/gm, "\t")
+    return string.replace(/ {4}/gm, "\t")
 }
 
 /**
