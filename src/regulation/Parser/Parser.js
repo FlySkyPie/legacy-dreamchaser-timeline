@@ -102,7 +102,7 @@ const parse = regulationString => {
     const { histories, content: tmp2 } = takeHistories(tmp1);
     const tmp3 = removeListTag(tmp2);
     const { isChaptered, content: tmp4 } = normalizeChapters(tmp3);
-    const content = makeIndentTree(tmp3.split("\n"), 0)
+    const content = makeIndentTree(tmp4.split("\n"), isChaptered ? 1 : 2)
 
     return {
         name,
