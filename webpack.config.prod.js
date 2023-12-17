@@ -9,10 +9,20 @@ module.exports = {
         filename: "bundle.js"
     },
     resolve: {
-        modules: [path.resolve(__dirname, "src"), "node_modules"]
+        modules: [path.resolve(__dirname, "src"), "node_modules"],
+        fallback: {
+            util: require.resolve("util/"),
+            path: require.resolve("path-browserify"),
+            zlib: require.resolve("browserify-zlib"),
+            stream: require.resolve("stream-browserify"),
+        },
     },
     module: {
         rules: [
+            {
+                test: /\.xml$/i,
+                use: 'raw-loader',
+            },
             {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
@@ -71,5 +81,22 @@ module.exports = {
     plugins: [
         // make sure to include the plugin!
         new VueLoaderPlugin()
-    ]
+    ],
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                vendor: {
+                    name: 'Vendor',
+                    chunks: 'all',
+                    test: /node_modules/,
+                },
+                common: {
+                    name: 'Commons',
+                    chunks: 'initial',
+                    minChunks: 2,
+                }
+            }
+        }
+    }
+
 }; 

@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path')
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
     mode: 'development',
@@ -13,11 +14,20 @@ module.exports = {
         path: path.resolve(__dirname, './bundle.js'),
     },
     resolve: {
-        modules: [path.resolve(__dirname, "src"), "node_modules"]
+        modules: [path.resolve(__dirname, "src"), "node_modules"],
+        fallback: {
+            util: require.resolve("util/"),
+            path: require.resolve("path-browserify"),
+            zlib: require.resolve("browserify-zlib"),
+            stream: require.resolve("stream-browserify"),
+        }
     },
     module: {
         rules: [
             {
+                test: /\.xml$/i,
+                use: 'raw-loader',
+            }, {
                 test: /\.js$/,
                 exclude: /(node_modules)/,
                 use: {
@@ -85,9 +95,15 @@ module.exports = {
                 concurrency: 100,
             },
         }),
+        new BundleAnalyzerPlugin(),
     ],
     devServer: {
         hot: true,
         port: 8080,
+    },
+    optimization: {
+        splitChunks: {
+            Chunks: 'all'
+        }
     }
 }
